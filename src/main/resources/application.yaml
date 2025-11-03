@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: notification-service
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/notification_service
+    username: postgres
+    password: "1234"
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ""
+    password: ""
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8081
+
+debug: true
+
+logging:
+  level:
+    org: WARN
+    blog: WARN
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor: TRACE
