@@ -7,6 +7,7 @@ import bg.softuni.notificationservice.web.dto.PreferenceRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PreferenceService {
@@ -32,8 +33,11 @@ public class PreferenceService {
                                                                   .type(NotificationType.EMAIL)
                                                                   .contactInfo(request.getContactInfo())
                                                                   .build();
-
-
         return preferenceRepository.save(preference);
+    }
+
+    public NotificationPreference getByUserId(UUID userId) {
+        return preferenceRepository.findByUserId(userId)
+                                   .orElseThrow(() -> new RuntimeException("Preference for this user does not exist"));
     }
 }
