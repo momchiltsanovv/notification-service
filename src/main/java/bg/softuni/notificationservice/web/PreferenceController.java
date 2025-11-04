@@ -24,9 +24,7 @@ public class PreferenceController {
 
         NotificationPreference preference = preferenceService.upsert(request);
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(DtoMapper.from(preference));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                             .body(DtoMapper.from(preference));
     }
-
 }
