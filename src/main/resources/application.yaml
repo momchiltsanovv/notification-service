@@ -5,22 +5,22 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     hibernate:
       ddl-auto: update
 
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/notification_service
-    username: postgres
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/notification-svc?createDatabaseIfNotExist=true
+    username: root
     password: "1234"
 
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ""
-    password: ""
+    username: "momchil395@gmail.com"
+    password: "siio wivi jusv lmyx"
     properties:
       mail:
         smtp:
