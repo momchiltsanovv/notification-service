@@ -18,4 +18,6 @@ public interface NotificationRepository extends JpaRepository<Notification, UUID
 //    List<Notification> findAllByUserIdAndDeletedIsFalse(@Param("userId") UUID userId);
 
     List<Notification> findAllByUserIdAndStatus(UUID userId, NotificationStatus status);
+
+    Notification getByUserId(UUID userId);
 }

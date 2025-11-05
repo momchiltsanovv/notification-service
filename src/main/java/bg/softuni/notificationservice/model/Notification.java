@@ -23,23 +23,26 @@ public class Notification {
     private UUID id;
 
     @Column(nullable = false)
-    private String subject;
+    private UUID userId;
 
-    @Column(nullable = false)
-    private String body;
-
-    @Column(nullable = false)
-    @CreationTimestamp
-    private LocalDateTime createdOn;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private NotificationStatus status;
+    private String contactInfo;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private NotificationType type;
 
-    private UUID userId;
+    @Column(nullable = false)
+    private String subject;
+
+    @Column(nullable = false)
+    private String body;
+
+    @CreationTimestamp
+    @Column(nullable = false)
+    private LocalDateTime createdOn;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private NotificationStatus status;
 
 }

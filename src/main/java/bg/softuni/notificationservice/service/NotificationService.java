@@ -1,10 +1,10 @@
 package bg.softuni.notificationservice.service;
 
 import bg.softuni.notificationservice.model.Notification;
-import bg.softuni.notificationservice.model.NotificationPreference;
 import bg.softuni.notificationservice.model.NotificationStatus;
 import bg.softuni.notificationservice.repository.NotificationRepository;
 import bg.softuni.notificationservice.web.dto.NotificationRequest;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,28 +16,28 @@ import org.springframework.stereotype.Service;
 public class NotificationService {
 
     private final NotificationRepository notificationRepository;
-    private final PreferenceService preferenceService;
     private final MailSender mailSender;
 
-    public NotificationService(NotificationRepository notificationRepository, PreferenceService preferenceService, JavaMailSenderImpl mailSender) {
+    public NotificationService(NotificationRepository notificationRepository,
+                               JavaMailSenderImpl mailSender) {
         this.notificationRepository = notificationRepository;
-        this.preferenceService = preferenceService;
         this.mailSender = mailSender;
     }
 
+    @Transactional
     public Notification send(NotificationRequest request) {
-
-        NotificationPreference preference = preferenceService.getByUserId(request.getUserId());
 
         Notification notification = Notification.builder()
                                                 .subject(request.getSubject())
                                                 .body(request.getBody())
-                                                .type(preference.getType())
+                                                .contactInfo(request.getContactInfo())
+                                                .type(request.getType())
                                                 .userId(request.getUserId())
                                                 .build();
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(preference.getContactInfo());
+        mailMessage.setFrom("momchil123@gmail.com");
+        mailMessage.setTo(request.getContactInfo());
         mailMessage.setSubject(request.getSubject());
         mailMessage.setText(request.getBody());
 
