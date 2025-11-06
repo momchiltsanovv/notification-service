@@ -24,7 +24,6 @@ public class NotificationService {
         this.mailSender = mailSender;
     }
 
-    @Transactional
     public Notification send(NotificationRequest request) {
 
         Notification notification = Notification.builder()
@@ -36,7 +35,6 @@ public class NotificationService {
                                                 .build();
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("momchil123@gmail.com");
         mailMessage.setTo(request.getContactInfo());
         mailMessage.setSubject(request.getSubject());
         mailMessage.setText(request.getBody());

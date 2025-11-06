@@ -20,7 +20,7 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 
-    @PostMapping
+    @PostMapping("/registration")
     public ResponseEntity<NotificationResponse> sendNotification(@RequestBody NotificationRequest request) {
 
         Notification notification = notificationService.send(request);
@@ -29,4 +29,6 @@ public class NotificationController {
                              .body(DtoMapper.from(notification));
 
     }
+
+//    TODO make a endpoint ot send email when user post an item 
 }
