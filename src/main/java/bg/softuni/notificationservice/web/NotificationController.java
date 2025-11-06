@@ -30,5 +30,5 @@ public class NotificationController {
 
     }
 
-//    TODO make a endpoint ot send email when user post an item 
+//    TODO make a endpoint ot send email when user post an item
 }
