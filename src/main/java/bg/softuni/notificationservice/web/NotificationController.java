@@ -31,7 +31,7 @@ public class NotificationController {
     }
 
     @PostMapping("/posted-item")
-    public ResponseEntity<NotificationResponse> sendPostedItemNotification(@RequestBody NotificationRequest request){
+    public ResponseEntity<NotificationResponse> sendPostedItemNotification(@RequestBody NotificationRequest request) {
         Notification notification = notificationService.send(request);
 
         return ResponseEntity.status(HttpStatus.CREATED)
